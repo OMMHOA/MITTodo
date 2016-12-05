@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MITTodo</string>
+    <string name="title_activity_new_todo">NewTodoActivity</string>
+    <string name="pipa">pipa</string>
+    <string name="title">Cím</string>
+    <string name="description">Leírás</string>
+</resources>

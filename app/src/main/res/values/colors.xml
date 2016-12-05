@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#FF3F51B5</color>
+    <color name="colorPrimaryDark">#FF303F9F</color>
+    <color name="colorAccent">#FFFF4081</color>
+    <color name="red">#FFFF0000</color>
+    <color name="mit_yellow">#FFF6BF17</color>
+    <color name="mit_blue">#FF178FDA</color>
+    <color name="white">#FFFFFFFF</color>
+</resources>
