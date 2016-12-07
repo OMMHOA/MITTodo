@@ -60,11 +60,12 @@ public class TodoRecyclerAdapter extends
         holder.tvTodoTitle.setText(todos.get(position).getTitle());
         holder.tvTodoDescription.setText(todos.get(position).getDescription());
         holder.rlActivityRow.setBackgroundColor(
-                ContextCompat.getColor(
-                        context,
-                        todos.get(position).getColor()
-                )
+            ContextCompat.getColor(
+                    context,
+                    todos.get(position).getColor()
+            )
         );
+//        holder.itemView.setOnClickListener();
     }
 
     @Override
@@ -198,7 +199,6 @@ public class TodoRecyclerAdapter extends
         @BindView(R.id.todo_title) TextView tvTodoTitle;
         @BindView(R.id.description) TextView tvTodoDescription;
         @BindView(R.id.activity_row) RelativeLayout rlActivityRow;
-
 
         ViewHolder(View itemView) {
             super(itemView);

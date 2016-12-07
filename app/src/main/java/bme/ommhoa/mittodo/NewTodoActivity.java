@@ -66,6 +66,7 @@ public class NewTodoActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         Intent intent = new Intent(this, ListActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
         if (item.getItemId() == R.id.done_creating_new) {
             if (isNetworkOnline(connectivityManager)) {
                 EditText title = (EditText) findViewById(R.id.new_title);
@@ -82,7 +83,7 @@ public class NewTodoActivity extends AppCompatActivity {
         }
 
         startActivity(intent);
-
+        finish();
         return super.onOptionsItemSelected(item);
     }
 
