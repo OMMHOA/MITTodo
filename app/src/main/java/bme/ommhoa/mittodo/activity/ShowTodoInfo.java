@@ -1,7 +1,9 @@
-package bme.ommhoa.mittodo;
+package bme.ommhoa.mittodo.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import bme.ommhoa.mittodo.R;
 
 public class ShowTodoInfo extends AppCompatActivity {
 

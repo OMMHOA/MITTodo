@@ -1,9 +1,5 @@
 package bme.ommhoa.mittodo;
 
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.widget.Toast;
-
 import com.backendless.Backendless;
 import com.orm.SugarApp;
 

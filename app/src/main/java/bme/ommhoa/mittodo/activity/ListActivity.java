@@ -1,4 +1,4 @@
-package bme.ommhoa.mittodo;
+package bme.ommhoa.mittodo.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 
+import bme.ommhoa.mittodo.R;
 import bme.ommhoa.mittodo.adapter.TodoItemTouchHelperCallback;
 import bme.ommhoa.mittodo.adapter.TodoRecyclerAdapter;
 import bme.ommhoa.mittodo.model.Todo;

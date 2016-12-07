@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="bme.ommhoa.mittodo.RowActivity">
+    tools:context="bme.ommhoa.mittodo.activity.RowActivity">
 
     <TextView
         android:id="@+id/todo_title"

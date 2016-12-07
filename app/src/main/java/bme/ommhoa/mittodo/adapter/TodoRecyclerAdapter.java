@@ -21,6 +21,7 @@ import java.util.List;
 
 import bme.ommhoa.mittodo.R;
 import bme.ommhoa.mittodo.helper.TodoManager;
+import bme.ommhoa.mittodo.listener.TodoRowOnClickListener;
 import bme.ommhoa.mittodo.model.Todo;
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -65,7 +66,7 @@ public class TodoRecyclerAdapter extends
                     todos.get(position).getColor()
             )
         );
-//        holder.itemView.setOnClickListener();
+        holder.itemView.setOnClickListener(new TodoRowOnClickListener(todos.get(position), context));
     }
 
     @Override
