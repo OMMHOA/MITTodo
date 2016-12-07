@@ -3,7 +3,6 @@ package bme.ommhoa.mittodo.adapter;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.support.v4.content.ContextCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -27,6 +26,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 import static bme.ommhoa.mittodo.helper.NetworkRelatedHelper.isNetworkOnline;
+import static bme.ommhoa.mittodo.helper.TodoManager.getNewTodosAndUpdateList;
 import static bme.ommhoa.mittodo.helper.TodoManager.removeTodoFromBaasTodoList;
 
 public class TodoRecyclerAdapter extends
@@ -72,7 +72,7 @@ public class TodoRecyclerAdapter extends
         return todos.size();
     }
 
-    public void addTodo(Todo todo, AppCompatActivity activity) {
+    public void addTodo(Todo todo) {
         todo.save();
         todos.add(todo);
         saveTodoInBaas(todo);
@@ -168,6 +168,10 @@ public class TodoRecyclerAdapter extends
         Log.e(TAG, "Baas " + msg + " error " + fault.getCode() + ": "
                 + fault.getMessage());
         Log.e(TAG, "Baas error detail: " + fault.getDetail());
+    }
+
+    public void init() {
+        getNewTodosAndUpdateList(todos);
     }
 
     static class ViewHolder extends RecyclerView.ViewHolder {

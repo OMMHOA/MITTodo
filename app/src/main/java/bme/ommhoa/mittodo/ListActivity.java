@@ -52,6 +52,7 @@ public class ListActivity extends AppCompatActivity {
                 new TodoItemTouchHelperCallback(todoRecyclerAdapter);
         ItemTouchHelper touchHelper = new ItemTouchHelper(callback);
         touchHelper.attachToRecyclerView(recyclerView);
+        todoRecyclerAdapter.init();
     }
 
     private void configureRecyclerView() {
@@ -89,7 +90,7 @@ public class ListActivity extends AppCompatActivity {
         int priorityColor = getPriorityColor(priorityId);
         if (title != null && !title.isEmpty()) {
             Todo todo = new Todo(title, description, priorityColor);
-            todoRecyclerAdapter.addTodo(todo, this);
+            todoRecyclerAdapter.addTodo(todo);
             intent.removeExtra(NewTodoActivity.TITLE);
         }
     }
