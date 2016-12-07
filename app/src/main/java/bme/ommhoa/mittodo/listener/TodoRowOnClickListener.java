@@ -24,7 +24,7 @@ public class TodoRowOnClickListener implements View.OnClickListener {
     public void onClick(View v) {
         Intent intent = new Intent(context, ShowTodoInfo.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        intent.putExtra(TITLE, todo.getDescription());
+        intent.putExtra(TITLE, todo.getTitle());
         intent.putExtra(DESCRIPTION, todo.getDescription());
 
         context.startActivity(intent);
