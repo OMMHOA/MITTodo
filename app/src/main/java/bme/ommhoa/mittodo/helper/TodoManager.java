@@ -11,16 +11,11 @@ public abstract class TodoManager {
     private static List<Todo> todos = new ArrayList<>();
 
     public static Todo removeTodoFromBaasTodoList(Todo todo) {
-        int indexOfTodo = -1;
-        for (int i = 0; i < todos.size(); i++) {
-            if (todoEquals(todo, todos.get(i))) {
-                indexOfTodo = i;
-                break;
-            }
-        }
-        if (indexOfTodo == -1)
+        Todo equalsTodo = getEqualsTodo(todo, todos);
+        if (equalsTodo == null)
             return null;
-        return todos.remove(indexOfTodo);
+        todos.remove(equalsTodo);
+        return equalsTodo;
     }
 
     private static boolean todoEquals(Todo todo1, Todo todo2) {
@@ -36,7 +31,7 @@ public abstract class TodoManager {
     public static List<Todo> getNewTodosAndUpdateList(List<Todo> data) {
         List<Todo> newTodos = new ArrayList<>();
         for (Todo todo : data) {
-            if (!todosContains(todo)) {
+            if (getEqualsTodo(todo, todos) == null) {
                 newTodos.add(todo);
                 todos.add(todo);
             }
@@ -44,12 +39,23 @@ public abstract class TodoManager {
         return newTodos;
     }
 
-    private static boolean todosContains(Todo todo) {
-        for (Todo t : todos) {
-            if (todoEquals(t, todo)) {
-                return true;
+    public static List<Todo> getDeletedTodosAndUpdateList(List<Todo> data) {
+        List<Todo> deletedTodos = new ArrayList<>();
+        for (Todo todo : todos) {
+            if (getEqualsTodo(todo, data) == null) {
+                deletedTodos.add(todo);
             }
         }
-        return false;
+        todos.removeAll(deletedTodos);
+        return deletedTodos;
+    }
+
+    public static Todo getEqualsTodo(Todo todo, List<Todo> todoList) {
+        for (Todo t : todoList) {
+            if (todoEquals(t, todo)) {
+                return t;
+            }
+        }
+        return null;
     }
 }

@@ -101,17 +101,23 @@ public class TodoRecyclerAdapter extends
             return;
         }
         todo.delete();
+        handleDismissAtBaasSide(todo);
+        notifyItemRemoved(position);
+    }
+
+    private void handleDismissAtBaasSide(Todo todo) {
         todo = removeTodoFromBaasTodoList(todo);
         if (todo == null) {
             Log.e(TAG, "No match in baas array");
-            notifyItemRemoved(position);
-            return;
+        } else {
+            sendRemoveRequestToBaas(todo);
         }
+    }
+
+    private void sendRemoveRequestToBaas(Todo todo) {
         Backendless.Persistence.of(Todo.class).remove(todo, new AsyncCallback<Long>() {
             @Override
             public void handleResponse(Long response) {
-                // Contact has been deleted. The response is the
-                // time in milliseconds when the object was deleted
                 Log.i(TAG, "Todo successfully removed from Baas on " + response);
             }
 
@@ -120,7 +126,6 @@ public class TodoRecyclerAdapter extends
                 logError(fault, "delete");
             }
         });
-        notifyItemRemoved(position);
     }
 
     private void saveTodoInBaas(Todo todo) {
@@ -144,9 +149,10 @@ public class TodoRecyclerAdapter extends
                     @Override
                     public void handleResponse(BackendlessCollection<Todo> response) {
                         Log.i(TAG, "Baas response received");
-                        List<Todo> newTodos =
-                                TodoManager.getNewTodosAndUpdateList(response.getData());
-                        addNewTodosLocally(newTodos);
+                        addNewTodosLocally(
+                                TodoManager.getNewTodosAndUpdateList(response.getData()));
+                        removeDeletedTodosLocally(
+                                TodoManager.getDeletedTodosAndUpdateList(response.getData()));
                     }
 
                     @Override
@@ -154,6 +160,20 @@ public class TodoRecyclerAdapter extends
                         logError(fault, "listing");
                     }
                 });
+    }
+
+    private void removeDeletedTodosLocally(List<Todo> deletedTodos) {
+        for (Todo todo : deletedTodos) {
+            Todo t = TodoManager.getEqualsTodo(todo, todos);
+            if (t == null) {
+                Log.e(TAG, "Error at deleting at synchronizing.");
+                continue;
+            }
+            int position = todos.indexOf(t);
+            todos.remove(position);
+            t.delete();
+            notifyItemRemoved(position);
+        }
     }
 
     private void addNewTodosLocally(List<Todo> newTodos) {
