@@ -96,7 +96,6 @@ public class ListActivity extends AppCompatActivity {
         }
     }
 
-    // TODO: 2016. 12. 05. legyen kozos a newtodoval es lehet nem colort akarunk tarolni todoban
     private int getPriorityColor(Integer priority_id) {
         int priority_color = 0xFFFFFFFF;
         if (priority_id == R.id.important_priority) {
